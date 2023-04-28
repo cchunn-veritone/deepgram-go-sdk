@@ -53,11 +53,5 @@ func (dg *Client) LiveTranscription(options LiveTranscriptionOptions) (*websocke
 		"X-DG-Agent":    []string{dgAgent},
 	}
 
-	c, resp, err := websocket.DefaultDialer.Dial(u.String(), header)
-
-	if err != nil {
-		log.Printf("handshake failed with status %s", resp.Status)
-		log.Fatal("dial:", err)
-	}
-	return c, resp, nil
+	return websocket.DefaultDialer.Dial(u.String(), header)
 }
